@@ -1,0 +1,604 @@
+/* ============================================================
+   Pop Art 波普艺术主题（stylekit slug: pop-art）
+   规范要点：黄 #ffdd00 / 粉 #ff69b4 / 电光蓝 #00bfff / 黑 / 白 / 紫 #a486ff；
+   所有元素粗黑描边、硬阴影（无模糊 4px 4px 0 #000）、Ben-Day 半色调网点
+   （双层叠加）、纯色平涂禁渐变、粗体大写字距、快节奏动效 duration-100
+   用法：页面容器加 class="pop"，并 import 本文件
+   ============================================================ */
+
+/* ---- 全局：白底 ---- */
+body {
+  background: #fff;
+}
+
+/* ---- 页面级设计令牌（作用域：加了 .pop 的页面） ---- */
+.pop {
+  /* 色板 */
+  --pop-yellow: #ffdd00;
+  --pop-pink: #ff69b4;
+  --pop-blue: #00bfff;
+  --pop-purple: #a486ff;
+  --pop-black: #000000;
+  --pop-white: #ffffff;
+  --pop-comic: Impact, 'Arial Black', 'SimHei', 'Microsoft YaHei', sans-serif;
+
+  /* Vant 组件变量覆盖（仅本页生效） */
+  --van-primary-color: var(--pop-blue);
+  --van-search-background: transparent;
+  --van-search-content-background: var(--pop-white);
+  --van-search-input-text-color: var(--pop-black);
+  --van-search-placeholder-color: rgba(0, 0, 0, 0.45);
+  --van-dropdown-menu-background: transparent;
+  --van-dropdown-menu-shadow: none;
+  --van-dropdown-menu-title-text-color: var(--pop-black);
+  --van-dropdown-menu-title-active-text-color: var(--pop-blue);
+  --van-dropdown-menu-title-font-size: 14px;
+  --van-empty-description-color: var(--pop-black);
+  --van-pull-refresh-head-text-color: var(--pop-black);
+  --van-loading-spinner-color: var(--pop-yellow);
+  --van-nav-bar-background: var(--pop-yellow);
+  --van-nav-bar-title-text-color: var(--pop-black);
+  --van-nav-bar-icon-color: var(--pop-black);
+  --van-nav-bar-text-color: var(--pop-black);
+  --van-cell-background: var(--pop-white);
+  --van-cell-text-color: var(--pop-black);
+  --van-cell-value-color: var(--pop-black);
+  --van-cell-label-color: rgba(0, 0, 0, 0.6);
+  --van-cell-border-color: rgba(0, 0, 0, 0.18);
+  --van-field-label-color: var(--pop-black);
+  --van-field-input-text-color: var(--pop-black);
+  --van-field-placeholder-text-color: rgba(0, 0, 0, 0.45);
+  --van-field-arrow-color: var(--pop-black);
+  --van-tabs-background: var(--pop-yellow);
+  --van-tab-text-color: var(--pop-black);
+  --van-tab-active-text-color: var(--pop-black);
+  --van-tabs-bottom-bar-color: var(--pop-black);
+  --van-tabs-bottom-bar-height: 3px;
+}
+
+/* ---- 双层 Ben-Day 网点（黑底 + 红偏移，禁止单层） ---- */
+.pop-dots {
+  background-image:
+    radial-gradient(circle, rgba(255, 0, 0, 0.16) 1.2px, transparent 1.2px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.85) 1.2px, transparent 1.2px);
+  background-size: 9px 9px, 9px 9px;
+  background-position: 4.5px 4.5px, 0 0;
+}
+
+/* ---- 页面底 ---- */
+.pop.pop-page {
+  min-height: 100vh;
+  padding-bottom: 66px;
+  background: var(--pop-white);
+  color: var(--pop-black);
+}
+
+/* ============================================================
+   拼单大厅（样板页）
+   ============================================================ */
+
+/* 漫画页头：黄色横幅 + 网点 + 对话气泡 */
+.pop-header {
+  position: relative;
+  padding: 20px 16px 16px;
+  background: var(--pop-yellow);
+  border-bottom: 3px solid var(--pop-black);
+}
+.pop-header .pop-dots { position: absolute; inset: 0; opacity: 0.35; pointer-events: none; }
+.pop-header-inner { position: relative; }
+
+.pop-bubble {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--pop-white);
+  border: 2px solid var(--pop-black);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--pop-black);
+  font-family: var(--pop-comic);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--pop-pink);
+  position: relative;
+}
+.pop-bubble::after {
+  content: '';
+  position: absolute;
+  left: 26px;
+  bottom: -8px;
+  border: 5px solid transparent;
+  border-top-color: var(--pop-black);
+  border-bottom: none;
+}
+
+.pop-header h1 {
+  margin: 12px 0 0;
+  font-family: var(--pop-comic);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--pop-black);
+  text-shadow: 2px 2px 0 var(--pop-white), -2px -2px 0 var(--pop-white), 2px -2px 0 var(--pop-white), -2px 2px 0 var(--pop-white);
+  -webkit-text-stroke: 1.5px var(--pop-black);
+}
+
+/* 搜索栏 */
+.pop .van-search { padding: 12px 16px 6px; }
+.pop .van-search__content {
+  border: 2px solid var(--pop-black);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--pop-black);
+}
+.pop .van-search__content .van-icon { color: var(--pop-black); }
+.pop .van-search__action { color: var(--pop-black); font-weight: 700; }
+
+/* 下拉筛选 */
+.pop .van-dropdown-menu { margin-top: 4px; }
+.pop .van-dropdown-menu__title { font-weight: 800; }
+.pop .van-dropdown-menu__title--active { color: var(--pop-blue); }
+
+/* 拼单卡片（白卡 + 粗黑框 + 硬阴影） */
+.pop-card {
+  position: relative;
+  margin: 14px 16px 0;
+  padding: 14px;
+  background: var(--pop-white);
+  border: 3px solid var(--pop-black);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 var(--pop-black);
+  transition: all 0.1s ease-out;
+}
+.pop-card::before,
+.pop-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 7px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
+}
+.pop-card::before { background-image: radial-gradient(circle, rgba(0, 0, 0, 0.5) 1.2px, transparent 1.2px); background-size: 9px 9px; }
+.pop-card::after { background-image: radial-gradient(circle, rgba(255, 0, 0, 0.35) 1.2px, transparent 1.2px); background-size: 9px 9px; background-position: 4.5px 4.5px; }
+.pop-card:hover::before, .pop-card:hover::after { opacity: 1; }
+.pop-card:hover { transform: scale(1.03) rotate(-1deg); box-shadow: 6px 6px 0 var(--pop-black); }
+.pop-card:active {
+  transform: scale(0.98) translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--pop-black);
+}
+.pop-card.st-2 { box-shadow: none; }
+
+.pop-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.pop-card-title {
+  font-size: 17px;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.02em;
+  color: var(--pop-black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pop-card-meta {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pop-black);
+  letter-spacing: 0.02em;
+}
+
+/* 状态标签（纯色平涂 + 黑描边） */
+.pop-tag {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border: 2px solid var(--pop-black);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.08em;
+}
+.pop-tag.tag-0 { background: var(--pop-blue); color: #fff; }
+.pop-tag.tag-1 { background: var(--pop-pink); color: #fff; }
+.pop-tag.tag-2 { background: var(--pop-white); color: var(--pop-black); }
+.pop-tag.tag-3 { background: var(--pop-purple); color: #fff; }
+
+/* 人数进度条（纯色填充 + 黑描边） */
+.pop-progress {
+  margin-top: 12px;
+  height: 12px;
+  border: 2px solid var(--pop-black);
+  border-radius: 4px;
+  background: var(--pop-white);
+  overflow: hidden;
+}
+.pop-progress-fill {
+  height: 100%;
+  background: var(--pop-blue);
+  transition: width 0.1s ease-out;
+}
+.pop-progress-fill.fill-1 { background: var(--pop-pink); }
+.pop-progress-fill.fill-2 {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.8) 1.2px, transparent 1.2px);
+  background-size: 6px 6px;
+}
+.pop-progress-fill.fill-3 { background: var(--pop-purple); }
+
+/* 分页 */
+.pop-page .pagination { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 18px 16px 8px; }
+.pop-page .pop-btn {
+  background: var(--pop-yellow);
+  border: 2px solid var(--pop-black);
+  color: var(--pop-black);
+  border-radius: 8px;
+  font-weight: 800;
+  font-family: var(--pop-comic);
+  box-shadow: 3px 3px 0 var(--pop-black);
+  transition: all 0.1s ease-out;
+}
+.pop-page .pop-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--pop-black); }
+.pop-page .pop-btn.van-button--disabled { opacity: 0.45; box-shadow: none; }
+.pop-page .page-info {
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  font-size: 14px;
+  color: var(--pop-black);
+  padding: 2px 10px;
+  border: 2px solid var(--pop-black);
+  border-radius: 6px;
+  background: var(--pop-white);
+}
+
+/* ============================================================
+   全局页面组件（导航栏 / 表单 / 按钮 / Tab / 分组卡）
+   ============================================================ */
+
+/* 导航栏：黄底黑粗边 */
+.pop .van-nav-bar { border-bottom: 3px solid var(--pop-black); }
+.pop .van-nav-bar__title {
+  font-family: var(--pop-comic);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+.pop .van-nav-bar__text { font-weight: 700; }
+
+/* 分组卡片（白卡 + 粗黑框 + 硬阴影），替代 van-cell-group inset */
+.pop-group {
+  margin: 12px 16px 0;
+  background: var(--pop-white);
+  border: 3px solid var(--pop-black);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--pop-black);
+}
+.pop-group .van-cell {
+  background: var(--pop-white);
+  font-weight: 700;
+}
+.pop-group .van-cell__label { font-weight: 600; }
+
+/* 按钮：漫画风 */
+.pop .van-button {
+  border-radius: 8px;
+  font-weight: 800;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.05em;
+  transition: all 0.1s ease-out;
+}
+.pop .van-button--primary {
+  background: var(--pop-yellow);
+  border: 2px solid var(--pop-black);
+  color: var(--pop-black);
+  box-shadow: 3px 3px 0 var(--pop-black);
+}
+.pop .van-button--primary:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--pop-black); }
+.pop .van-button--primary.van-button--plain {
+  background: var(--pop-white);
+  color: var(--pop-black);
+  box-shadow: 3px 3px 0 var(--pop-black);
+}
+.pop .van-button--success {
+  background: var(--pop-yellow);
+  border: 2px solid var(--pop-black);
+  color: var(--pop-black);
+  box-shadow: 2px 2px 0 var(--pop-black);
+}
+.pop .van-button--success.van-button--plain {
+  background: var(--pop-white);
+  color: var(--pop-black);
+}
+.pop .van-button--danger {
+  background: #ff0506;
+  border: 2px solid var(--pop-black);
+  color: #fff;
+  box-shadow: 3px 3px 0 var(--pop-black);
+}
+.pop .van-button--danger.van-button--plain {
+  background: var(--pop-white);
+  color: #ff0506;
+  box-shadow: 3px 3px 0 var(--pop-black);
+}
+.pop .van-button--warning {
+  background: var(--pop-white);
+  border: 2px solid var(--pop-pink);
+  color: var(--pop-pink);
+  box-shadow: 2px 2px 0 var(--pop-black);
+}
+.pop .van-button--disabled { opacity: 0.55; box-shadow: none !important; }
+.pop .van-button--mini { padding: 4px 12px; border-radius: 6px; }
+
+/* Tab（我的拼团） */
+.pop .van-tabs__nav { box-shadow: none; border-bottom: 3px solid var(--pop-black); background: var(--pop-yellow); }
+.pop .van-tab {
+  font-weight: 800;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   登录 / 注册
+   ============================================================ */
+.pop-auth-header {
+  text-align: center;
+  margin: 8vh 24px 32px;
+}
+.pop-auth-header .pop-bubble { margin-bottom: 14px; }
+.pop-auth-header h1 {
+  font-family: var(--pop-comic);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--pop-black);
+  -webkit-text-stroke: 1.2px var(--pop-black);
+}
+.pop-auth-header p {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 14px;
+  background: var(--pop-yellow);
+  border: 2px solid var(--pop-black);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--pop-black);
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--pop-black);
+}
+.pop-auth .btn-area { margin: 30px 16px; }
+.pop-auth .btn-area .van-button { margin-top: 14px; }
+.pop-auth .btn-area .van-button:first-child { margin-top: 0; }
+
+/* ============================================================
+   拼单详情
+   ============================================================ */
+.pop-status-card {
+  margin: 12px;
+  padding: 20px 16px;
+  border: 3px solid var(--pop-black);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 var(--pop-black);
+  color: #fff;
+}
+.pop-status-card.st-0 { background: var(--pop-blue); }
+.pop-status-card.st-1 { background: var(--pop-pink); }
+.pop-status-card.st-2 { background: var(--pop-white); color: var(--pop-black); box-shadow: none; }
+.pop-status-card.st-3 { background: var(--pop-purple); }
+.pop-status-title {
+  font-size: 20px;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.03em;
+}
+.pop-status-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 2px 12px;
+  background: var(--pop-white);
+  border: 2px solid var(--pop-black);
+  border-radius: 6px;
+  color: var(--pop-black);
+  font-size: 12px;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.08em;
+}
+.pop-status-card.st-2 .pop-status-tag { background: var(--pop-yellow); }
+.pop-status-count {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pop .wechat { color: var(--pop-pink); font-weight: 800; font-size: 13px; }
+
+.pop-tip {
+  margin: 12px 16px 0;
+  padding: 10px 12px;
+  background: var(--pop-yellow);
+  border: 2px solid var(--pop-black);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--pop-black);
+  color: var(--pop-black);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pop-action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: var(--pop-white);
+  border-top: 3px solid var(--pop-black);
+}
+.pop-action-bar .van-button + .van-button { margin-top: 10px; }
+.pop .state-tip {
+  text-align: center;
+  color: var(--pop-black);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 0 4px;
+}
+
+/* ============================================================
+   消息中心
+   ============================================================ */
+.pop-assistant-group .van-cell {
+  background: var(--pop-yellow);
+  border-bottom: 2px solid var(--pop-black);
+}
+.pop-assistant-group .van-cell__title { font-weight: 900; font-family: var(--pop-comic); letter-spacing: 0.04em; }
+.pop-assistant-group .van-cell__label { color: rgba(0, 0, 0, 0.65); font-weight: 600; }
+
+.pop-msg-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  border: 2px solid var(--pop-black);
+  border-radius: 6px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.pop-msg-icon.apply_new { background: var(--pop-blue); }
+.pop-msg-icon.join_success { background: var(--pop-pink); }
+.pop-msg-icon.join_fail { background: var(--pop-purple); }
+.pop-msg-right { display: flex; align-items: center; gap: 6px; }
+.pop-unread-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff0506;
+  border: 1.5px solid var(--pop-black);
+  flex-shrink: 0;
+}
+.pop-msg-time { color: rgba(0, 0, 0, 0.55); font-size: 12px; font-weight: 600; }
+
+/* ============================================================
+   个人中心
+   ============================================================ */
+.pop-user-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 20px;
+  background: var(--pop-yellow);
+  border-bottom: 3px solid var(--pop-black);
+}
+.pop-user-card .pop-dots { position: absolute; inset: 0; opacity: 0.3; pointer-events: none; }
+.pop-user-inner { position: relative; display: flex; align-items: center; gap: 14px; }
+.pop-user-card .avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  border: 2px solid var(--pop-black);
+  background: var(--pop-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0 var(--pop-black);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.pop-user-card .avatar .van-icon { color: var(--pop-black); }
+.pop-nickname {
+  font-size: 20px;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  color: var(--pop-black);
+}
+.pop-username {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+}
+.pop-menu .van-cell { font-weight: 800; }
+
+/* ============================================================
+   拼团小助手
+   ============================================================ */
+.pop-section-title {
+  padding: 12px 16px 0;
+  font-size: 15px;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.06em;
+  color: var(--pop-black);
+}
+.pop-log-item { padding: 10px 16px; }
+.pop-log-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.pop-log-version {
+  color: var(--pop-pink);
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.pop-log-date { color: rgba(0, 0, 0, 0.5); font-size: 12px; font-weight: 700; }
+.pop-log-item ul { margin: 0; padding-left: 18px; color: var(--pop-black); font-size: 13px; font-weight: 600; line-height: 1.8; }
+
+/* ============================================================
+   发布页时间选择弹窗（teleport 到 body，需全局）
+   ============================================================ */
+.pop-picker {
+  background: var(--pop-white);
+  border-top: 3px solid var(--pop-black);
+  border-radius: 10px 10px 0 0;
+}
+.pop-picker .picker-title {
+  text-align: center;
+  font-weight: 900;
+  font-family: var(--pop-comic);
+  letter-spacing: 0.05em;
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: var(--pop-black);
+}
+.pop-picker .van-picker-column__item { color: var(--pop-black); font-weight: 600; }
+.pop-picker .van-picker-column__item--selected { color: var(--pop-pink); font-weight: 800; }
+.pop-picker .picker-footer .van-button {
+  background: var(--pop-white);
+  border: 2px solid var(--pop-black);
+  color: var(--pop-black);
+  border-radius: 8px;
+  font-weight: 800;
+  box-shadow: 2px 2px 0 var(--pop-black);
+}
+.pop-picker .picker-footer .van-button--primary {
+  background: var(--pop-yellow);
+  color: var(--pop-black);
+}
+
+/* ============================================================
+   下拉筛选弹层（Vant 渲染到 body，需全局）
+   ============================================================ */
+.van-dropdown-item__content {
+  background: var(--pop-white);
+  border-top: 3px solid var(--pop-black);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+}
+.van-dropdown-item__content .van-cell {
+  background: transparent;
+  color: var(--pop-black);
+  font-weight: 700;
+}
+.van-dropdown-item__content .van-cell__title { font-size: 14px; }
+.van-dropdown-item__option--active,
+.van-dropdown-item__option--active .van-cell__title {
+  color: var(--pop-blue);
+}
+
+/* ============================================================
+   底部导航：自绘组件（components/MainTabbar.vue，scoped 样式），
+   本文件不再包含 tabbar 规则
+   ============================================================ */
