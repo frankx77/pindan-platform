@@ -1,0 +1,274 @@
+/* ============================================================
+   Pop Art 波普艺术主题 - 设计令牌与通用类
+   从 pindan-platform/frontend/src/styles/pop-art.css 提炼
+   适配桌面端落地页场景，沿用主程序的视觉语言
+   ============================================================ */
+
+:root {
+  /* 主色板（与主程序严格一致） */
+  --pop-yellow: #ffdd00;
+  --pop-pink: #ff69b4;
+  --pop-blue: #00bfff;
+  --pop-purple: #a486ff;
+  --pop-red: #ff3b3b;
+  --pop-green: #4cd964;
+  --pop-black: #000000;
+  --pop-white: #ffffff;
+  --pop-cream: #fff8e7;
+
+  /* 字体 */
+  --pop-comic: "Impact", "Arial Black", "Bangers", "SimHei", "Microsoft YaHei", sans-serif;
+  --pop-body: "PingFang SC", "HarmonyOS Sans", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* 描边与阴影 */
+  --pop-border: 3px solid var(--pop-black);
+  --pop-border-thick: 4px solid var(--pop-black);
+  --pop-shadow-sm: 4px 4px 0 var(--pop-black);
+  --pop-shadow-md: 6px 6px 0 var(--pop-black);
+  --pop-shadow-lg: 8px 8px 0 var(--pop-black);
+  --pop-shadow-xl: 10px 10px 0 var(--pop-black);
+
+  /* 半径（Pop Art 几乎无圆角） */
+  --pop-radius-sm: 4px;
+  --pop-radius-md: 8px;
+
+  /* 节奏 */
+  --pop-duration: 150ms;
+  --pop-duration-slow: 300ms;
+  --pop-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- 全局重置 ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--pop-body);
+  color: var(--pop-black);
+  background: var(--pop-cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---- 双层 Ben-Day 网点 ---- */
+.pop-dots {
+  background-image:
+    radial-gradient(circle, rgba(255, 0, 0, 0.18) 1.2px, transparent 1.2px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.85) 1.2px, transparent 1.2px);
+  background-size: 9px 9px, 9px 9px;
+  background-position: 4.5px 4.5px, 0 0;
+}
+
+.pop-dots-light {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.5) 1.2px, transparent 1.2px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.12) 1.2px, transparent 1.2px);
+  background-size: 14px 14px, 14px 14px;
+  background-position: 7px 7px, 0 0;
+}
+
+/* ---- 漫画体标题通用类 ---- */
+.pop-title {
+  font-family: var(--pop-comic);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ---- 容器 ---- */
+.pop-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Section 通用间距 ---- */
+.pop-section {
+  padding: 96px 0;
+  position: relative;
+}
+
+.pop-section-head {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.pop-section-head h2 {
+  font-family: var(--pop-comic);
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin: 0 0 16px;
+  display: inline-block;
+  background: var(--pop-yellow);
+  padding: 8px 24px;
+  border: var(--pop-border-thick);
+  box-shadow: var(--pop-shadow-md);
+  transform: rotate(-1deg);
+}
+
+.pop-section-head p {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ---- 通用按钮 ---- */
+.pop-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--pop-comic);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: var(--pop-border-thick);
+  background: var(--pop-white);
+  color: var(--pop-black);
+  box-shadow: var(--pop-shadow-md);
+  transition: transform var(--pop-duration) var(--pop-ease),
+              box-shadow var(--pop-duration) var(--pop-ease),
+              background var(--pop-duration);
+  cursor: pointer;
+}
+
+.pop-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--pop-black);
+}
+
+.pop-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--pop-black);
+}
+
+.pop-btn--primary {
+  background: var(--pop-yellow);
+}
+
+.pop-btn--secondary {
+  background: var(--pop-pink);
+  color: var(--pop-white);
+}
+
+.pop-btn--blue {
+  background: var(--pop-blue);
+  color: var(--pop-white);
+}
+
+.pop-btn--purple {
+  background: var(--pop-purple);
+  color: var(--pop-white);
+}
+
+/* ---- 通用卡片 ---- */
+.pop-card {
+  background: var(--pop-white);
+  border: var(--pop-border-thick);
+  box-shadow: var(--pop-shadow-lg);
+  padding: 32px;
+  transition: transform var(--pop-duration-slow) var(--pop-ease),
+              box-shadow var(--pop-duration-slow) var(--pop-ease);
+}
+
+.pop-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 14px 14px 0 var(--pop-black);
+}
+
+/* ---- 爆炸贴纸（POP! / NEW! 等）---- */
+.pop-sticker {
+  position: absolute;
+  display: inline-block;
+  padding: 12px 20px;
+  background: var(--pop-red);
+  color: var(--pop-white);
+  font-family: var(--pop-comic);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 3px solid var(--pop-black);
+  box-shadow: var(--pop-shadow-md);
+  transform: rotate(-12deg);
+  z-index: 5;
+  animation: pop-sticker-bounce 3s ease-in-out infinite;
+}
+
+@keyframes pop-sticker-bounce {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50% { transform: rotate(-8deg) scale(1.05); }
+}
+
+/* ---- 对话气泡 ---- */
+.pop-bubble {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--pop-white);
+  border: var(--pop-border);
+  border-radius: 12px;
+  box-shadow: var(--pop-shadow-sm);
+  font-family: var(--pop-comic);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--pop-pink);
+  position: relative;
+}
+
+.pop-bubble--yellow { background: var(--pop-yellow); color: var(--pop-black); }
+.pop-bubble--blue   { background: var(--pop-blue);   color: var(--pop-white); }
+.pop-bubble--purple { background: var(--pop-purple); color: var(--pop-white); }
+.pop-bubble--pink   { background: var(--pop-pink);   color: var(--pop-white); }
+
+/* ---- 标签 ---- */
+.pop-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--pop-black);
+  color: var(--pop-white);
+  font-family: var(--pop-comic);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---- 通用阴影与几何元素 ---- */
+.pop-frame {
+  border: var(--pop-border-thick);
+  box-shadow: var(--pop-shadow-lg);
+}
+
+.pop-frame--yellow { background: var(--pop-yellow); }
+.pop-frame--pink   { background: var(--pop-pink); }
+.pop-frame--blue   { background: var(--pop-blue); }
+.pop-frame--purple { background: var(--pop-purple); }
+.pop-frame--white  { background: var(--pop-white); }
+
+/* ---- 可访问性 ---- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- 选区颜色 ---- */
+::selection {
+  background: var(--pop-yellow);
+  color: var(--pop-black);
+}

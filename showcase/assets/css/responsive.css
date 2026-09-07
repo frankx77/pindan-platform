@@ -1,0 +1,443 @@
+/* ============================================================
+   Pindan Showcase - 响应式适配（平板 + 手机）
+   ============================================================ */
+
+/* ---- 大屏桌面（> 1280px）：保持基础样式不动 ---- */
+
+/* ---- 中等桌面 / 笔记本（1024 ~ 1279px） ---- */
+@media (max-width: 1279px) {
+  .nav__links {
+    gap: 18px;
+  }
+  .nav__links a {
+    font-size: 14px;
+  }
+  .hero {
+    padding: 110px 0 80px;
+  }
+  .hero__inner {
+    gap: 40px;
+  }
+  .phone-mockup {
+    width: 240px;
+    height: 500px;
+  }
+}
+
+/* ---- 平板（768 ~ 1023px） ---- */
+@media (max-width: 1023px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__burger {
+    display: flex;
+    order: 3;
+  }
+
+  .nav__cta {
+    order: 2;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  /* 汉堡菜单展开 */
+  .nav.is-open .nav__links {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 24px;
+    background: var(--pop-white);
+    border-bottom: var(--pop-border);
+    box-shadow: var(--pop-shadow-md);
+  }
+
+  .nav.is-open .nav__links a {
+    padding: 12px 0;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+
+  .nav.is-open .nav__links a:last-child {
+    border-bottom: 0;
+  }
+
+  /* Hero 改为上下排版 */
+  .hero {
+    padding: 100px 0 60px;
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero__content {
+    text-align: center;
+  }
+
+  .hero__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__ctas,
+  .hero__tags {
+    justify-content: center;
+  }
+
+  .hero__visual {
+    min-height: 470px;
+  }
+
+  .phone-mockup {
+    width: 230px;
+    height: 480px;
+  }
+
+  /* 价值卡片改 2 列 */
+  .values__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 功能区改 2 列 */
+  .feature-panel__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 技术栈 3 列保持 */
+  .tech__layers {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .tech-layer {
+    padding: 24px;
+  }
+
+  .tech-layer h3 {
+    font-size: 16px;
+  }
+
+  /* 数据表格改 3 列 */
+  .stats__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 时间轴改 3 列 2 行 */
+  .timeline__track {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .timeline__track::before {
+    display: none;
+  }
+
+  /* Footer */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ---- 手机（< 768px） ---- */
+@media (max-width: 767px) {
+  .pop-container {
+    padding: 0 16px;
+  }
+
+  .pop-section {
+    padding: 64px 0;
+  }
+
+  .pop-section-head {
+    margin-bottom: 40px;
+  }
+
+  .pop-section-head h2 {
+    font-size: 32px;
+    padding: 6px 16px;
+  }
+
+  .pop-section-head p {
+    font-size: 15px;
+  }
+
+  /* 导航 */
+  .nav__inner {
+    height: 64px;
+  }
+
+  .nav__name small {
+    display: none;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 90px 0 60px;
+    min-height: auto;
+  }
+
+  .hero__title {
+    font-size: clamp(36px, 11vw, 56px);
+  }
+
+  .hero__title-hl {
+    padding: 0 8px;
+  }
+
+  .hero__subtitle {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .hero__subtitle br {
+    display: none;
+  }
+
+  .hero__visual {
+    min-height: 400px;
+  }
+
+  .phone-mockup {
+    width: 200px;
+    height: 420px;
+    padding: 8px;
+    border-width: 4px;
+  }
+
+  .phone-mockup__notch {
+    width: 60px;
+    height: 16px;
+  }
+
+  .hero__sticker {
+    font-size: 16px;
+    padding: 8px 14px;
+  }
+
+  .hero__deco--1,
+  .hero__deco--3 {
+    font-size: 36px;
+  }
+
+  .hero__deco--2 {
+    font-size: 48px;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+
+  /* 价值卡片改单列 */
+  .values__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .value-card {
+    padding: 28px 24px;
+  }
+
+  .value-card__num {
+    font-size: 48px;
+  }
+
+  /* 场景改单列 */
+  .scenarios__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .scenario-card {
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px;
+  }
+
+  .scenario-card__icon {
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+  }
+
+  /* 功能 tabs 横向滚动 */
+  .features__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 4px 4px 8px;
+    scrollbar-width: none;
+  }
+
+  .features__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .feature-tab {
+    flex-shrink: 0;
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .feature-panel {
+    padding: 24px 20px;
+  }
+
+  .feature-panel__header h3 {
+    font-size: 20px;
+  }
+
+  .feature-panel__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* 流程图竖排 */
+  .flow-diagram {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+
+  /* 截图 */
+  .screenshots__group-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .screenshots__group-head h3 {
+    font-size: 18px;
+  }
+
+  .phone-frame {
+    width: 200px;
+    height: 420px;
+  }
+
+  .screenshot-tile--wide {
+    width: 320px;
+  }
+
+  .browser-frame img {
+    height: 200px;
+  }
+
+  /* 技术栈改单列 */
+  .tech__layers {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tech-layer {
+    padding: 24px;
+  }
+
+  .tech__pipeline {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tech__pipe-arrow {
+    transform: rotate(90deg);
+  }
+
+  .tech__db-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* 数据 2 列 */
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 24px 8px;
+  }
+
+  .stat-card__num {
+    font-size: 48px;
+  }
+
+  /* 时间轴 2 列 */
+  .timeline__track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* 关于 */
+  .about__intro {
+    padding: 20px;
+  }
+
+  .about__intro p {
+    font-size: 15px;
+  }
+
+  /* CTA */
+  .cta__inner {
+    padding: 56px 20px;
+  }
+
+  .cta__content h2 {
+    font-size: 36px;
+  }
+
+  /* Footer */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    padding: 40px 16px;
+    gap: 32px;
+  }
+
+  .footer__cols {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* 按钮组改纵向 */
+  .hero__ctas,
+  .cta__buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .pop-btn {
+    justify-content: center;
+  }
+}
+
+/* ---- 小屏手机（< 375px） ---- */
+@media (max-width: 374px) {
+  .pop-section-head h2 {
+    font-size: 26px;
+  }
+
+  .hero__title {
+    font-size: 36px;
+  }
+
+  .stat-card__num {
+    font-size: 36px;
+  }
+
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline__track {
+    grid-template-columns: 1fr;
+  }
+}
