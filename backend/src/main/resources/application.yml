@@ -5,7 +5,7 @@ spring:
   application:
     name: pindan-backend
   datasource:
-    url: jdbc:mysql://localhost:3306/pindan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3307/pindan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: pindan123
     driver-class-name: com.mysql.cj.jdbc.Driver
