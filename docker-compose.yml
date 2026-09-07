@@ -1,0 +1,21 @@
+# 校园拼单/组队平台 —— MySQL 8 一键启动（新机器首次使用）
+# 用法：docker compose up -d        （数据库就绪后执行 sql/init.sql + sql/demo-data.sql）
+# 注意：宿主机 3306 端口若被本地 MySQL 服务占用，本容器映射 3307，后端连接串已与此一致
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: pindan-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: pindan123
+      MYSQL_DATABASE: pindan
+      MYSQL_CHARACTER_SET_SERVER: utf8mb4
+      MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"
+    volumes:
+      - pindan-mysql-data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  pindan-mysql-data:
