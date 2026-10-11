@@ -18,20 +18,20 @@ INSERT IGNORE INTO `user` (id, username, password, nickname, avatar, phone, wech
 INSERT IGNORE INTO `user` (id, username, password, nickname, avatar, phone, wechat, role, status, created_at) VALUES (8, 'banme', '$2a$10$zNHNasgZvZUF60VvbF6X/..pqICdpFEMMDzFWFxN8L6vLngD1/JW.', 'banme', NULL, NULL, 'wx_banme', 1, 1, '2026-08-26 04:31:15');
 
 -- ---------- 演示拼单（覆盖 招募中/已成团/已结束/已取消 四种状态） ----------
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (1, 1, '拼奶茶，3人成团', '奶茶', '起送价太高', 3, 3, '2026-08-26 20:00:00', 1, '2026-08-25 04:39:01');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (2, 1, '拼车回家', '拼车', NULL, 4, 1, '2026-08-27 12:00:00', 3, '2026-08-25 04:39:01');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (3, 4, '周末看电影，2人拼', '电影票', NULL, 2, 2, '2026-08-28 18:00:00', 1, '2026-08-25 04:40:50');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (4, 3, '拼车到南京南站', '拼车', '行李不多', 2, 2, '2026-08-27 12:45:00', 1, '2026-08-25 04:58:24');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (5, 2, '拼水果，2人团', '水果', NULL, 2, 2, '2026-08-30 12:00:00', 1, '2026-08-25 05:05:44');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (6, 1, '拼电影，4人团', '电影票', NULL, 4, 1, '2026-09-01 20:00:00', 0, '2026-08-25 05:06:37');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (7, 2, '拼早餐，3人团', '其他', NULL, 3, 1, '2026-09-02 08:00:00', 0, '2026-08-25 05:06:38');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (8, 1, '拼电影，4人团', '电影票', NULL, 4, 1, '2026-09-01 20:00:00', 3, '2026-08-25 05:06:50');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (9, 2, '拼早餐，3人团', '其他', NULL, 3, 1, '2026-09-02 08:00:00', 3, '2026-08-25 05:06:51');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (10, 2, '拼超市，2人团', '其他', NULL, 2, 2, '2020-01-01 00:00:00', 2, '2026-08-25 05:07:00');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (11, 1, '拼水果，3人团', '水果', NULL, 3, 2, '2026-09-05 12:00:00', 3, '2026-08-25 05:08:41');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (12, 1, '拼晚餐，3人团', '其他', NULL, 3, 2, '2026-09-10 18:00:00', 3, '2026-08-25 06:40:48');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (13, 5, '拼游戏，2人团', '其他', NULL, 2, 2, '2026-09-12 20:00:00', 1, '2026-08-25 06:44:21');
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (14, 5, '拼雪糕，3人团', '其他', NULL, 3, 2, '2026-09-13 18:00:00', 3, '2026-08-25 06:44:57');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (1, 1, '拼奶茶，3人成团', '奶茶', '起送价太高', 3, 3, DATE_ADD(NOW(), INTERVAL 15 DAY), 1, '2026-08-25 04:39:01');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (2, 1, '拼车回家', '拼车', NULL, 4, 1, DATE_ADD(NOW(), INTERVAL 20 DAY), 3, '2026-08-25 04:39:01');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (3, 4, '周末看电影，2人拼', '电影票', NULL, 2, 2, DATE_ADD(NOW(), INTERVAL 15 DAY), 1, '2026-08-25 04:40:50');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (4, 3, '拼车到南京南站', '拼车', '行李不多', 2, 2, DATE_ADD(NOW(), INTERVAL 15 DAY), 1, '2026-08-25 04:58:24');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (5, 2, '拼水果，2人团', '水果', NULL, 2, 2, DATE_ADD(NOW(), INTERVAL 15 DAY), 1, '2026-08-25 05:05:44');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (6, 1, '拼电影，4人团', '电影票', NULL, 4, 1, DATE_ADD(NOW(), INTERVAL 30 DAY), 0, '2026-08-25 05:06:37');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (7, 2, '拼早餐，3人团', '其他', NULL, 3, 1, DATE_ADD(NOW(), INTERVAL 30 DAY), 0, '2026-08-25 05:06:38');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (8, 1, '拼电影，4人团', '电影票', NULL, 4, 1, DATE_ADD(NOW(), INTERVAL 20 DAY), 3, '2026-08-25 05:06:50');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (9, 2, '拼早餐，3人团', '其他', NULL, 3, 1, DATE_ADD(NOW(), INTERVAL 20 DAY), 3, '2026-08-25 05:06:51');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (10, 2, '拼超市，2人团', '其他', NULL, 2, 2, DATE_SUB(NOW(), INTERVAL 7 DAY), 2, '2026-08-25 05:07:00');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (11, 1, '拼水果，3人团', '水果', NULL, 3, 2, DATE_ADD(NOW(), INTERVAL 20 DAY), 3, '2026-08-25 05:08:41');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (12, 1, '拼晚餐，3人团', '其他', NULL, 3, 2, DATE_ADD(NOW(), INTERVAL 20 DAY), 3, '2026-08-25 06:40:48');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (13, 5, '拼游戏，2人团', '其他', NULL, 2, 2, DATE_ADD(NOW(), INTERVAL 15 DAY), 1, '2026-08-25 06:44:21');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (14, 5, '拼雪糕，3人团', '其他', NULL, 3, 2, DATE_ADD(NOW(), INTERVAL 20 DAY), 3, '2026-08-25 06:44:57');
 
 -- ---------- 演示申请记录（待确认/已加入/已拒绝/已退出 全覆盖） ----------
 INSERT IGNORE INTO `join_request` (id, groupon_id, user_id, status, created_at, updated_at) VALUES (1, 1, 4, 1, '2026-08-25 05:05:26', '2026-08-25 05:05:34');
@@ -79,9 +79,9 @@ INSERT IGNORE INTO `user` (id, username, password, nickname, avatar, phone, wech
 INSERT IGNORE INTO `user` (id, username, password, nickname, avatar, phone, wechat, role, status, created_at) VALUES (10, 'freshB', '$2a$10$7YraBBySFowAnyn3SG7ezOlVCG7WSXFXc9pVcht9qUB1lKhs/klme', 'freshB', NULL, NULL, 'wx_freshB', 1, 1, '2026-08-26 05:30:00');
 
 -- 拼单 15：freshA 发布，已成团（满员）
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (15, 9, '拼水果，新鲜上市', '水果', '车厘子拼一下', 2, 2, '2026-09-27 20:00:00', 1, '2026-08-26 05:30:00');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (15, 9, '拼水果，新鲜上市', '水果', '车厘子拼一下', 2, 2, DATE_ADD(NOW(), INTERVAL 15 DAY), 1, '2026-08-26 05:30:00');
 -- 拼单 16：freshA 发布，招募中
-INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (16, 9, '拼奶茶，2 人团', '奶茶', NULL, 3, 1, '2026-09-30 21:00:00', 0, '2026-08-26 05:31:00');
+INSERT IGNORE INTO `groupon` (id, publisher_id, title, category_tag, description, target_count, current_count, deadline, status, created_at) VALUES (16, 9, '拼奶茶，2 人团', '奶茶', NULL, 3, 1, DATE_ADD(NOW(), INTERVAL 30 DAY), 0, '2026-08-26 05:31:00');
 
 -- 拼单 15 的成员申请记录（freshB 已加入）
 INSERT IGNORE INTO `join_request` (id, groupon_id, user_id, status, created_at, updated_at) VALUES (17, 15, 10, 1, '2026-08-26 05:30:30', '2026-08-26 05:30:30');
